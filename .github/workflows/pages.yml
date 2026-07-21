@@ -7,21 +7,21 @@ jobs:
   build-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: 拉取源码
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: 配置Node环境
+      - name: Setup Node 22
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
 
-      - name: 安装依赖（npm，规避pnpm找不到问题）
+      - name: Install dependencies
         run: npm install --legacy-peer-deps
 
-      - name: 执行打包
+      - name: Build static site
         run: npm run build
 
-      - name: 部署到GitHub Pages
+      - name: Deploy Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
