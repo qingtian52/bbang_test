@@ -1,24 +1,27 @@
 name: Deploy Pages
 on:
   push:
-    branches: [main]
+    branches: [ main ]
+
 jobs:
-  build:
+  build-deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Setup Node
+      - name: 拉取源码
+        uses: actions/checkout@v4
+
+      - name: 配置Node环境
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'pnpm'
-      - name: Install pnpm
-        run: npm install -g pnpm
-      - name: Install dependencies
-        run: pnpm install
-      - name: Build
-        run: pnpm build
-      - name: Deploy
+
+      - name: 安装依赖（npm，规避pnpm找不到问题）
+        run: npm install --legacy-peer-deps
+
+      - name: 执行打包
+        run: npm run build
+
+      - name: 部署到GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
