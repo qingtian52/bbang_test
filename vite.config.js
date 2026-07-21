@@ -1,12 +1,7 @@
-import { defineConfig } from 'vite';
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
 
 export default defineConfig({
-  base: './',
-  server: {
-    port: 5173, // 与你之前的端口保持一致
-    open: true
-  },
-  build: {
-    outDir: 'dist'
-  }
-});
+  base: '/bbang_test/',
+  plugins: [react()]
+})
