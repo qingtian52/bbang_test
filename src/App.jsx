@@ -4,11 +4,11 @@ import { useGLTF, useAnimations, ContactShadows, PerformanceMonitor } from '@rea
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import * as THREE from 'three';
 
-useGLTF.preload('${import.meta.env.BASE_URL}Idle.glb');
-useGLTF.preload('${import.meta.env.BASE_URL}Run.glb');
-useGLTF.preload('${import.meta.env.BASE_URL}shop_a_low.glb');
-useGLTF.preload('${import.meta.env.BASE_URL}shop_b_low.glb');
-useGLTF.preload('${import.meta.env.BASE_URL}shop_c_low.glb');
+useGLTF.preload(`${import.meta.env.BASE_URL}Idle.glb`);
+useGLTF.preload(`${import.meta.env.BASE_URL}Run.glb`);
+useGLTF.preload(`${import.meta.env.BASE_URL}shop_a_low.glb`);
+useGLTF.preload(`${import.meta.env.BASE_URL}shop_b_low.glb`);
+useGLTF.preload(`${import.meta.env.BASE_URL}shop_c_low.glb`);
 
 const GROUND_SIZE = 120;
 const WALKABLE_BOUNDS = {
@@ -124,9 +124,9 @@ function collectCollisionBoxes(scene) {
 }
 
 const BUILDINGS = [
-  { id: 'shop_a', name: 'Clothing Store', low: '${import.meta.env.BASE_URL}shop_a_low.glb', high: '${import.meta.env.BASE_URL}shop_a_high.glb', pos: [-22, 0, -9] },
-  { id: 'shop_b', name: 'Cafe', low: '${import.meta.env.BASE_URL}shop_b_low.glb', high: '${import.meta.env.BASE_URL}shop_b_high.glb', pos: [-5, 0, 12] },
-  { id: 'shop_c', name: 'Bookstore', low: '${import.meta.env.BASE_URL}shop_c_low.glb', high: '${import.meta.env.BASE_URL}shop_c_high.glb', pos: [28, 0, -5] },
+  { id: 'shop_a', name: 'Clothing Store', low: `${import.meta.env.BASE_URL}shop_a_low.glb`, high: `${import.meta.env.BASE_URL}shop_a_high.glb`, pos: [-22, 0, -9] },
+  { id: 'shop_b', name: 'Cafe', low: `${import.meta.env.BASE_URL}shop_b_low.glb`, high: `${import.meta.env.BASE_URL}shop_b_high.glb`, pos: [-5, 0, 12] },
+  { id: 'shop_c', name: 'Bookstore', low: `${import.meta.env.BASE_URL}shop_c_low.glb`, high: `${import.meta.env.BASE_URL}shop_c_high.glb`, pos: [28, 0, -5] },
 ];
 
 // ========== GrassGround ==========
@@ -277,8 +277,8 @@ function Building({ config, onCollisionUpdate, highState }) {
 const Pig = React.forwardRef(({ targetPos, collisionBoxesRef, onReachedTarget, onHeadingUpdate }, ref) => {
   const groupRef = useRef();
   useImperativeHandle(ref, () => groupRef.current);
-  const idleData = useGLTF('${import.meta.env.BASE_URL}Idle.glb');
-  const runData = useGLTF('${import.meta.env.BASE_URL}Run.glb');
+  const idleData = useGLTF(`${import.meta.env.BASE_URL}Idle.glb`);
+  const runData = useGLTF(`${import.meta.env.BASE_URL}Run.glb`);
   const { actions: idleActions } = useAnimations(idleData.animations, groupRef);
   const { actions: runActions } = useAnimations(runData.animations, groupRef);
 
